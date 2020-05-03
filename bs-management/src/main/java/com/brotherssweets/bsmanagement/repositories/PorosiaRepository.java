@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PorosiaRepository extends CrudRepository<Porosia,Long> {
-    @Override
-    Iterable<Porosia> findAllById(Iterable<Long> iterable);
+
+    Porosia findByPorosiaIdentifier(String porosiaId);
 }
