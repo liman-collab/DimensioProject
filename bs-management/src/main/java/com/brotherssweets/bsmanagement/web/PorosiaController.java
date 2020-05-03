@@ -42,4 +42,9 @@ public class PorosiaController {
 
         return new ResponseEntity<Porosia>(porosia,HttpStatus.OK);
     }
+
+    @GetMapping("/all")
+    public Iterable<Porosia> getAllProjects(){
+        return porosiaService.findAllProjects();
+    }
 }

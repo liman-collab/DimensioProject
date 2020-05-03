@@ -33,4 +33,8 @@ public class PorosiaService {
 
         return porosia;
     }
+
+    public Iterable<Porosia> findAllProjects(){
+        return porosiaRepository.findAll();
+    }
 }
