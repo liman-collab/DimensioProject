@@ -18,7 +18,7 @@ public class PorosiaService {
             porosia.setPorosiaIdentifier(porosia.getPorosiaIdentifier().toUpperCase());
             return porosiaRepository.save(porosia);
         }catch (Exception e){
-            throw new PorosiaIdException("Porosia ID '"+porosia.getPorosiaIdentifier().toUpperCase()+"' already exists");
+            throw new PorosiaIdException("Porosia ID '"+porosia.getPorosiaIdentifier().toUpperCase()+"' ekziston");
         }
 
     }
@@ -28,13 +28,22 @@ public class PorosiaService {
         Porosia porosia = porosiaRepository.findByPorosiaIdentifier(porosiaId.toUpperCase());
 
         if (porosia==null){
-            throw new PorosiaIdException("Porosia ID '"+porosiaId+"' does not exists");
+            throw new PorosiaIdException("Porosia ID '"+porosiaId+"' nuk egziston");
         }
 
         return porosia;
     }
 
-    public Iterable<Porosia> findAllProjects(){
+    public Iterable<Porosia> findAllPorosia(){
         return porosiaRepository.findAll();
+    }
+
+    public void deletePorosiaByIdentifier(String porosiaId){
+        Porosia porosia = porosiaRepository.findByPorosiaIdentifier(porosiaId.toUpperCase());
+
+        if (porosia==null){
+            throw new PorosiaIdException("Nuk mundet te fshihet Porosia me ID '"+porosiaId+"'.Kjo porosi nuk ezgsiton");
+        }
+        porosiaRepository.delete(porosia);
     }
 }

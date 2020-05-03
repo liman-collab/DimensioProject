@@ -44,7 +44,16 @@ public class PorosiaController {
     }
 
     @GetMapping("/all")
-    public Iterable<Porosia> getAllProjects(){
-        return porosiaService.findAllProjects();
+    public Iterable<Porosia> getAllPorosia(){
+        return porosiaService.findAllPorosia();
     }
+
+    @DeleteMapping("/{porosiaId}")
+    public ResponseEntity<?> deletePorosia(@PathVariable String porosiaId){
+
+        porosiaService.deletePorosiaByIdentifier(porosiaId);
+
+        return new ResponseEntity<String>("Porosia me ID: '"+porosiaId+"'eshte fshire.",HttpStatus.OK);
+    }
+
 }
